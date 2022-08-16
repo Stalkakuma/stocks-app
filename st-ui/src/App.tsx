@@ -11,7 +11,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <p>{!stockData ? "Loading..." : stockData}</p>
       <></>
     </div>
