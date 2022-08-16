@@ -13,7 +13,6 @@ const App = () => {
   return (
     <div className="app">
       <p>{!stockData ? "Loading..." : stockData}</p>
-      <></>
     </div>
   );
 };
