@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "test": "npm --prefix st-ui run test"
   },
   "keywords": [],
   "author": "",
