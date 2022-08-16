@@ -30,5 +30,3 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: ESLint Action eslintrc
-      uses: mrdivyansh/eslint-action@v1.0.7
