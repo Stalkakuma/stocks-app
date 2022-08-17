@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import { Box, Center, Grid, GridItem } from "@chakra-ui/react";
 
 const App = () => {
   const [stockData, setStockData] = useState(null);
@@ -11,9 +11,25 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <p>{!stockData ? "Loading..." : stockData}</p>
-    </div>
+    <Box>
+      <Grid templateColumns="repeat(2 , 1fr)" gap={6}>
+        <GridItem>
+          <Center>
+            <p> Input here</p>
+          </Center>
+        </GridItem>
+        <GridItem>
+          <Center>
+            <p>Date picker here</p>
+          </Center>
+        </GridItem>
+      </Grid>
+      <Center>
+        <div className="app">
+          <p>{!stockData ? "Loading..." : stockData}</p>
+        </div>
+      </Center>
+    </Box>
   );
 };
 
