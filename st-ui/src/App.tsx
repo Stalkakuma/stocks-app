@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Box, Center, Grid, GridItem } from "@chakra-ui/react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const App = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [stockData, setStockData] = useState(null);
 
   useEffect(() => {
@@ -20,7 +24,12 @@ const App = () => {
         </GridItem>
         <GridItem>
           <Center>
-            <p>Date picker here</p>
+            <Box>
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date: Date) => setSelectedDate(date)}
+              />
+            </Box>
           </Center>
         </GridItem>
       </Grid>
