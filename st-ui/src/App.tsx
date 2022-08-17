@@ -19,7 +19,7 @@ const App = () => {
       <Grid templateColumns="repeat(2 , 1fr)" gap={6}>
         <GridItem>
           <Center>
-            <p> Input here</p>
+            <p> Input here...</p>
           </Center>
         </GridItem>
         <GridItem>

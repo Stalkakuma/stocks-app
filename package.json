@@ -16,6 +16,9 @@
     "**/*.ts": [
       "eslint --fix"
     ],
+    "**/*.tsx": [
+      "eslint --fix"
+    ],
     "**/*.scss": [
       "stylefmt",
       "stylelint --syntax scss"
