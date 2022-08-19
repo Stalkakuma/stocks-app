@@ -1,20 +1,30 @@
 import { useState } from "react";
-import { Box, VStack, Container, Stack, Heading, Text } from "@chakra-ui/react";
+import { Box, VStack, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import SearchBar from "./components/searchBar/SearchBar";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { FinnhubDataValues } from "./types/types";
+import { StocksList } from "./components/stocksList/StocksList";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [stocksData, setStocksData] = useState<FinnhubDataValues[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const inputToApp = (stocksData: FinnhubDataValues[]) => {
+    setStocksData(stocksData);
+  };
 
   return (
     <Container maxW={"5xl"}>
-      <Stack
+      <Flex
+        direction={"column"}
         as={Box}
         textAlign={"center"}
         spacing={{ base: 8, md: 14 }}
         py={{ base: 20, md: 36 }}
+        alignContent={"center"}
       >
         <Heading
           fontWeight={600}
@@ -35,10 +45,11 @@ const App = () => {
             />
           </Box>
           <Box w="60%">
-            <SearchBar />
+            <SearchBar inputToApp={inputToApp} setIsLoading={setIsLoading} />
           </Box>
         </VStack>
-      </Stack>
+        <StocksList isLoading={isLoading} stocksData={stocksData} />
+      </Flex>
     </Container>
   );
 };

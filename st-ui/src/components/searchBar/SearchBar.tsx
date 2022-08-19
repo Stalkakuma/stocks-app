@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC } from "react";
 import { FormControl, Stack } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -19,10 +19,13 @@ const SearchSchema = Yup.object().shape({
 const baseUrl = "https://finnhub.io/api/v1/";
 const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  inputToApp: (data: FinnhubDataValues[]) => void;
+  setIsLoading: (val: boolean) => void;
+};
+
+const SearchBar: FC<SearchBarProps> = ({ inputToApp, setIsLoading }) => {
   const initialValues: MyFormValues = { stockName: "" };
-  const [stocksData, setStocksData] = useState<FinnhubDataValues[]>([]);
-  console.log("START", stocksData);
 
   const loadStocks = async (values: string) => {
     const startArray: FinnhubDataValues[] = [];
@@ -47,7 +50,8 @@ const SearchBar = () => {
         startArray.push(newStack);
       }
     });
-    setStocksData(startArray);
+    inputToApp(startArray);
+    setIsLoading(false);
   };
 
   return (
