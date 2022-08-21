@@ -2,7 +2,7 @@ export interface MyFormValues {
   stockName: string;
 }
 
-export interface FinnhubDataValues {
+export type FinnhubDataValues = {
   country: string;
   currency: string;
   exchange: string;
@@ -15,11 +15,11 @@ export interface FinnhubDataValues {
   weburl: string;
   logo: string;
   finnhubIndustry: string;
-}
+};
 
-export interface StockSymbolValues {
+export type StockSymbolValues = {
   description: string;
   displaySymbol: string;
   symbol: string;
   type: string;
-}
+};

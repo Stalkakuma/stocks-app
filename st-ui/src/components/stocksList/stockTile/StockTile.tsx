@@ -7,7 +7,10 @@ import {
   Stack,
   useColorModeValue,
   Spacer,
+  Link,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+
 import { FinnhubDataValues } from "../../../types/types";
 
 type StockTileProps = {
@@ -36,6 +39,9 @@ export const StockTile: FC<StockTileProps> = ({ stock }) => {
           </Heading>
           <Text color={"gray.500"}>{stock.country}</Text>
         </Stack>
+        <Link color="teal.500" href={stock.weburl} isExternal>
+          {stock.weburl} <ExternalLinkIcon mx="2px" />
+        </Link>
       </Box>
     </Box>
   );

@@ -4,11 +4,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { InputField } from "./inputField/InputField";
 
-import {
-  MyFormValues,
-  FinnhubDataValues,
-  StockSymbolValues,
-} from "../../types/types";
+import { MyFormValues } from "../../types/types";
 
 const SearchSchema = Yup.object().shape({
   stockName: Yup.string()
@@ -16,43 +12,14 @@ const SearchSchema = Yup.object().shape({
     .required("Keyword required")
     .matches(/^[aA-zZ\s]+$/, "Must be an Alphabetic letter"),
 });
-const baseUrl = "https://finnhub.io/api/v1/";
-const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
 
 type SearchBarProps = {
-  inputToApp: (data: FinnhubDataValues[]) => void;
-  setIsLoading: (val: boolean) => void;
+  setValues: (values: string) => void;
+  setStartLoading: (startLoading: boolean) => void;
 };
 
-const SearchBar: FC<SearchBarProps> = ({ inputToApp, setIsLoading }) => {
+const SearchBar: FC<SearchBarProps> = ({ setValues, setStartLoading }) => {
   const initialValues: MyFormValues = { stockName: "" };
-
-  const loadStocks = async (values: string) => {
-    const startArray: FinnhubDataValues[] = [];
-    const newStockSymbolsData = await fetch(
-      `${baseUrl}search?q=${values}${API_KEY}`
-    )
-      .then((response) => response.json())
-      .catch((err) => {
-        console.log(err);
-      });
-
-    newStockSymbolsData.result.forEach(async (stock: StockSymbolValues) => {
-      const newStack = await fetch(
-        `${baseUrl}stock/profile2?symbol=${stock.symbol}${API_KEY}`
-      )
-        .then((response) => response.json())
-        .catch((err) => {
-          console.log(err);
-        });
-      const newStackLength = Object.keys(newStack);
-      if (newStackLength && newStackLength.length > 0) {
-        startArray.push(newStack);
-      }
-    });
-    inputToApp(startArray);
-    setIsLoading(false);
-  };
 
   return (
     <Stack spacing={0}>
@@ -60,8 +27,9 @@ const SearchBar: FC<SearchBarProps> = ({ inputToApp, setIsLoading }) => {
         initialValues={initialValues}
         validationSchema={SearchSchema}
         onSubmit={(values, { setSubmitting }) => {
-          loadStocks(values.stockName.toString());
+          setValues(values.stockName.toString());
           setSubmitting(false);
+          setStartLoading(true);
         }}
       >
         <Form>
