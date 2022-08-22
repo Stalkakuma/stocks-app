@@ -23,3 +23,10 @@ export type StockSymbolValues = {
   symbol: string;
   type: string;
 };
+
+export interface UserDateContextValues {
+  startValue: number | null;
+  setStartValue: (date: number | null) => void;
+  endValue: number | null;
+  setEndValue: (date: number | null) => void;
+}

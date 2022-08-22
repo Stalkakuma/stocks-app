@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import {
   Heading,
   Box,
@@ -14,6 +14,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import { FinnhubDataValues } from "../../../types/types";
 import { PriceHistroy } from "../../priceHistory/PriceHistory";
+import { MainContext } from "../../../utils/UserContext";
 
 const api = "https://finnhub.io/api/v1/stock/candle?symbol=";
 const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
@@ -23,6 +24,7 @@ type StockTileProps = {
 };
 
 export const StockTile: FC<StockTileProps> = ({ stock }) => {
+  const context = useContext(MainContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [candlesData, setCandlesData] = useState();
 
@@ -31,11 +33,11 @@ export const StockTile: FC<StockTileProps> = ({ stock }) => {
       return;
     }
     fetch(
-      `${api}${stock.ticker}&resolution=1&from=1631022248&to=1631627048${API_KEY}`
+      `${api}${stock.ticker}&resolution=1&from=${context?.startValue}&to=${context?.endValue}${API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => setCandlesData(data));
-  }, [stock]);
+  }, [stock, context]);
 
   return (
     <>

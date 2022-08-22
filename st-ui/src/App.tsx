@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Box, VStack, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import DatePicker from "react-datepicker";
 import SearchBar from "./components/searchBar/SearchBar";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { FinnhubDataValues, StockSymbolValues } from "./types/types";
 import { StocksList } from "./components/stocksList/StocksList";
-
+import { DatePickerWidget } from "./components/datePickerWidget/DatePickerWidget";
 const baseUrl = "https://finnhub.io/api/v1/";
 const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
 
@@ -14,7 +13,6 @@ const App = () => {
   const [startLoading, setStartLoading] = useState(false);
   const [values, setValues] = useState("");
   const [stocksData, setStocksData] = useState<FinnhubDataValues[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const hasDataLoaded = !startLoading && stocksData;
 
   const getStocksData = (stocksSymbols: StockSymbolValues[]) => {
@@ -85,12 +83,7 @@ const App = () => {
         </Heading>
 
         <VStack>
-          <Box w="20%">
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date: Date) => setSelectedDate(date)}
-            />
-          </Box>
+          <DatePickerWidget />
           <Box w="60%">
             <SearchBar
               setValues={setValues}
@@ -104,7 +97,7 @@ const App = () => {
         {hasDataLoaded ? (
           <StocksList stocksData={stocksData} />
         ) : (
-          <p>Im boned...</p>
+          <p>Nothing...</p>
         )}
       </Flex>
     </Container>
