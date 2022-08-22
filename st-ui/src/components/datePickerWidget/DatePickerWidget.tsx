@@ -6,8 +6,8 @@ import { MainContext } from "../../utils/UserContext";
 
 export const DatePickerWidget = () => {
   const context = useContext(MainContext);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   const removeDigits = (x: number, n: number) =>
     (x - (x % Math.pow(10, n))) / Math.pow(10, n);

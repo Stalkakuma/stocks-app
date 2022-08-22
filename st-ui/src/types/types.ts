@@ -30,3 +30,32 @@ export interface UserDateContextValues {
   endValue: number | null;
   setEndValue: (date: number | null) => void;
 }
+
+export type Candle = {
+  close: number | null;
+  high: number | null;
+  low: number | null;
+  open: number | null;
+  x: Date | null;
+  volume: number | null;
+};
+
+export type FinnhubCandlesDataValues = {
+  c: number[];
+  h: number[];
+  l: number[];
+  o: number[];
+  t: number[];
+  v: number[];
+};
+
+export type FinnhubCandlesDataPayload = FinnhubCandlesDataValues | null;
+
+export type CreateCandleHandler = (
+  close: number,
+  open: number,
+  high: number,
+  low: number,
+  x: Date,
+  v: number
+) => Candle;
