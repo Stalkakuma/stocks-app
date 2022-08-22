@@ -40,8 +40,12 @@ const App = () => {
           const isStockIncluded = uniqueStocks.some(
             (sto) => sto.name === stock.name
           );
-          console.log(isStockIncluded);
-          if (!stock.error && stockLength.length > 0 && !isStockIncluded) {
+          if (
+            !stock.error &&
+            stockLength.length > 0 &&
+            !isStockIncluded &&
+            stock.type !== ""
+          ) {
             uniqueStocks.push(stock);
           }
         });

@@ -12,7 +12,7 @@ export const StocksList: FC<StockListProps> = ({ stocksData }) => {
     <List>
       {stocksData.map((stock) => (
         <ListItem key={stock.name}>
-          <Center>
+          <Center flexDirection={"column"}>
             <StockTile stock={stock} />
           </Center>
         </ListItem>
