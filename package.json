@@ -7,9 +7,10 @@
   "node": "16.16.0"
 },
   "scripts": {
+
     "start": "server/server.js",
     "dev:api": "NODE_ENV=development nodemon server/server.js",
-    "dev:client": "node cd st-ui &&  npm start",
+    "dev:client": "node cd st-ui &&  npm start",    
     "test": "npm --prefix st-ui run test",
     "prepare": "husky install",
     "build": "npm run build --prefix st-ui"
