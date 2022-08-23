@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const logger = require("./logger");
 const cors = require("cors");
 
@@ -12,6 +13,8 @@ const corsOptions = {
 const UserRoute = require("./UserRouter");
 const config = require("./db");
 const app = express();
+
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {
