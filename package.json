@@ -11,7 +11,6 @@
     "dev:api": "NODE_ENV=development nodemon server/index.js",
     "dev:client": "node cd st-ui &&  npm start",
     "test": "npm --prefix st-ui run test",
-    "build": "cd st-ui && npm install && npm run build",
     "prepare": "husky install"
 
   },
