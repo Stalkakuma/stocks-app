@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+  "node": "16.16.0"
+},
   "scripts": {
     "start": "server/index.js",
     "dev": "NODE_ENV=development nodemon server/index.js",
     "test": "npm --prefix st-ui run test",
+    "build": "cd st-ui && npm install && npm run build",
     "prepare": "husky install"
   },
   "lint-staged": {

@@ -17,9 +17,9 @@ const App = () => {
 
   const getStocksData = (stocksSymbols: StockSymbolValues[]) => {
     const promises = stocksSymbols.map((symbol) =>
-      fetch(`${baseUrl}stock/profile2?symbol=${symbol.symbol}${API_KEY}`).then(
-        (res) => res.json()
-      )
+      fetch(`${baseUrl}stock/profile2?symbol=${symbol.symbol}${API_KEY}`)
+        .then((res) => res.json())
+        .catch((err) => console.log(err))
     );
     return Promise.all(promises);
   };
@@ -53,12 +53,11 @@ const App = () => {
         setStocksData(data);
       })
       .catch((err) => console.log(err));
-
-    setStartLoading(false);
   };
 
   if (startLoading && values.length !== 0) {
     loadStocks();
+    setStartLoading(false);
   }
 
   return (
@@ -67,7 +66,7 @@ const App = () => {
         direction={"column"}
         as={Box}
         textAlign={"center"}
-        spacing={{ base: 8, md: 14 }}
+        gap={15}
         py={{ base: 20, md: 36 }}
         alignContent={"center"}
       >
@@ -76,9 +75,9 @@ const App = () => {
           fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}
         >
-          Browse stock prices <br />
+          Browse stocks <br />
           <Text as={"span"} color={"green.400"}>
-            and price history
+            and their prices
           </Text>
         </Heading>
 
@@ -90,15 +89,13 @@ const App = () => {
               setStartLoading={setStartLoading}
             />
           </Box>
+          {!startLoading && values.length !== 0 && stocksData.length === 0 && (
+            <Heading size={"lg"} color="#c43a31">
+              Loading...
+            </Heading>
+          )}
         </VStack>
-        {(startLoading || (startLoading && stocksData.length === 0)) && (
-          <p>Loading...</p>
-        )}
-        {hasDataLoaded ? (
-          <StocksList stocksData={stocksData} />
-        ) : (
-          <p>Nothing...</p>
-        )}
+        {hasDataLoaded && <StocksList stocksData={stocksData} />}
       </Flex>
     </Container>
   );

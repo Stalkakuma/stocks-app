@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import DatePicker from "react-datepicker";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Container, Box } from "@chakra-ui/react";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainContext } from "../../utils/UserContext";
 
@@ -21,34 +21,42 @@ export const DatePickerWidget = () => {
   });
 
   return (
-    <Flex>
-      <DatePicker
-        isClearable
-        filterDate={(d) => {
-          return new Date() > d;
-        }}
-        placeholderText="Select Start Date"
-        dateFormat="MMMM d, yyyy"
-        selected={startDate}
-        selectsStart
-        startDate={startDate}
-        endDate={endDate}
-        onChange={(date) => setStartDate(date)}
-      />
-      <DatePicker
-        isClearable
-        filterDate={(d) => {
-          return new Date() > d;
-        }}
-        placeholderText="Select End Date"
-        dateFormat="MMMM d, yyyy"
-        selected={endDate}
-        selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-        onChange={(date) => setEndDate(date)}
-      />
-    </Flex>
+    <Container>
+      <Flex
+        as={Box}
+        textAlign={"center"}
+        gap={15}
+        py={{ base: 10 }}
+        alignContent={"center"}
+      >
+        <DatePicker
+          isClearable
+          filterDate={(d) => {
+            return new Date() > d;
+          }}
+          placeholderText="Select Start Date"
+          dateFormat="MMMM d, yyyy"
+          selected={startDate}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(date) => setStartDate(date)}
+        />
+        <DatePicker
+          isClearable
+          filterDate={(d) => {
+            return new Date() > d;
+          }}
+          placeholderText="Select End Date"
+          dateFormat="MMMM d, yyyy"
+          selected={endDate}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+          onChange={(date) => setEndDate(date)}
+        />
+      </Flex>
+    </Container>
   );
 };
