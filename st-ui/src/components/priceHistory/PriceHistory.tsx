@@ -21,6 +21,7 @@ import {
 import { MainContext } from "../../utils/UserContext";
 import { createCandlesList } from "../../utils/CandleData";
 import { Candle } from "../../types/types";
+import { sendToServer } from "../../utils/PostData";
 
 const api = "https://finnhub.io/api/v1/stock/candle?symbol=";
 const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
@@ -38,6 +39,14 @@ export const PriceHistroy: FC<PriceHistoryProps> = ({
 }) => {
   const context = useContext(MainContext);
   const [candles, setCandles] = useState<Candle[] | null>([]);
+  const isDataReady =
+    isOpen && context?.startValue !== null && context?.endValue !== null;
+  const userActionData = candles
+    ? {
+        nameOfCompany: stockTicker,
+        priceHistory: candles,
+      }
+    : null;
 
   useEffect(() => {
     if (context?.startValue && context?.endValue) {
@@ -50,6 +59,12 @@ export const PriceHistroy: FC<PriceHistoryProps> = ({
         .catch((err) => console.log(err));
     }
   }, [stockTicker, context]);
+
+  useEffect(() => {
+    if (isDataReady) {
+      sendToServer(userActionData);
+    }
+  });
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="3xl">

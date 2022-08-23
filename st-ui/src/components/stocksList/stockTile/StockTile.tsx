@@ -9,6 +9,7 @@ import {
   Spacer,
   Link,
   useDisclosure,
+  Button,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
