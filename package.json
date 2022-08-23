@@ -3,17 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+  "node": "16.16.0"
+},
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "server/index.js",
+    "dev": "NODE_ENV=development nodemon server/index.js",
     "test": "npm --prefix st-ui run test",
+    "build": "cd st-ui && npm install && npm run build",
     "prepare": "husky install"
-
   },
   "lint-staged": {
     "**/*.js": [
       "eslint --fix"
     ],
     "**/*.ts": [
+      "eslint --fix"
+    ],
+    "**/*.tsx": [
       "eslint --fix"
     ],
     "**/*.scss": [
@@ -25,7 +32,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2",
+    "winston": "^3.8.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",

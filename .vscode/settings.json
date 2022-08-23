@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/16c487ba-b877-40da-9343-583b8e945298/microsoft.web/sites/subscriptions/16c487ba-b877-40da-9343-583b8e945298/resourceGroups/stocks-charts-jv/providers/Microsoft.Web/sites/stocks-charts-jv",
+  "appService.deploySubpath": "."
+}
