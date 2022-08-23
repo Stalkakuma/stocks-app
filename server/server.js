@@ -5,16 +5,16 @@ const cors = require("cors");
 
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const UserRoute = require("./UserRouter");
 
 const PORT = process.env.PORT || 3001;
 const corsOptions = {
   origin: "http://localhost:3000",
 };
-const UserRoute = require("./UserRouter");
 const config = require("./db");
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(express.static(path.resolve(__dirname, "../st-ui/build")));
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {
