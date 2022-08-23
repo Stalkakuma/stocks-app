@@ -13,8 +13,6 @@
     "test": "npm --prefix st-ui run test",
     "prepare": "husky install",
     "build": "npm run build --prefix st-ui"
-
-
   },
   "lint-staged": {
     "**/*.js": [
