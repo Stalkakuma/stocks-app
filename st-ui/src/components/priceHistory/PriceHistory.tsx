@@ -18,13 +18,13 @@ import {
   VictoryLabel,
 } from "victory";
 
+import { API_KEY } from "../../utils/ApiData";
 import { MainContext } from "../../utils/UserContext";
 import { createCandlesList } from "../../utils/CandleData";
 import { Candle } from "../../types/types";
 import { sendToServer } from "../../utils/PostData";
 
 const api = "https://finnhub.io/api/v1/stock/candle?symbol=";
-const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
 
 interface PriceHistoryProps {
   isOpen: boolean;
