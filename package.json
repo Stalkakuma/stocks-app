@@ -2,14 +2,14 @@
   "name": "stocks-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "16.16.0"
   },
   "scripts": {
     "start": "cd server && node server.js",
     "dev:api": "NODE_ENV=development nodemon server/server.js",
-    "dev:client": "node cd st-ui &&  npm start",
+    "dev:client": "cd st-ui &&  npm start",
     "test": "npm --prefix st-ui run test",
     "build": "npm run build --prefix st-ui"
   },
