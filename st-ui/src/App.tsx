@@ -2,27 +2,17 @@ import { useState } from "react";
 import { Box, VStack, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import SearchBar from "./components/searchBar/SearchBar";
 
-import "react-datepicker/dist/react-datepicker.css";
-import { FinnhubDataValues, StockSymbolValues } from "./types/types";
+import { API_KEY, baseUrl } from "./utils/ApiData";
+import { getStocksData } from "./utils/GetStocksData";
+import { FinnhubDataValues } from "./types/types";
 import { StocksList } from "./components/stocksList/StocksList";
 import { DatePickerWidget } from "./components/datePickerWidget/DatePickerWidget";
-const baseUrl = "https://finnhub.io/api/v1/";
-const API_KEY = "&token=cbv0om2ad3i8ctr89vr0";
 
 const App = () => {
   const [startLoading, setStartLoading] = useState(false);
   const [values, setValues] = useState("");
   const [stocksData, setStocksData] = useState<FinnhubDataValues[]>([]);
   const hasDataLoaded = !startLoading && stocksData;
-
-  const getStocksData = (stocksSymbols: StockSymbolValues[]) => {
-    const promises = stocksSymbols.map((symbol) =>
-      fetch(`${baseUrl}stock/profile2?symbol=${symbol.symbol}${API_KEY}`)
-        .then((res) => res.json())
-        .catch((err) => console.log(err))
-    );
-    return Promise.all(promises);
-  };
 
   const loadStocks = () => {
     fetch(`${baseUrl}search?q=${values}${API_KEY}`)
@@ -35,15 +25,8 @@ const App = () => {
         const uniqueStocks: FinnhubDataValues[] = [];
         data.forEach((stock) => {
           const stockLength = Object.keys(stock);
-          const isStockIncluded = uniqueStocks.some(
-            (sto) => sto.name === stock.name
-          );
-          if (
-            !stock.error &&
-            stockLength.length > 0 &&
-            !isStockIncluded &&
-            stock.type !== ""
-          ) {
+
+          if (!stock.error && stockLength.length > 0) {
             uniqueStocks.push(stock);
           }
         });
