@@ -9,7 +9,7 @@ import { MyFormValues } from "../../types/types";
 const SearchSchema = Yup.object().shape({
   stockName: Yup.string()
     .max(35, "Must be 35 characters or less")
-    .required("Keyword required")
+    .required("Keyword or symbol required")
     .matches(/^[aA-zZ\s]+$/, "Must be an Alphabetic letter"),
 });
 
@@ -38,7 +38,7 @@ const SearchBar: FC<SearchBarProps> = ({ setValues, setStartLoading }) => {
               id="stockName"
               name="stockName"
               type="text"
-              placeholder="Enter a keyword"
+              placeholder="Enter a symbol or a keyword"
             />
           </FormControl>
         </Form>

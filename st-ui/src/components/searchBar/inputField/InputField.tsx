@@ -15,13 +15,12 @@ export const InputField: FC<InputFieldProps> = ({ ...props }) => {
 
   return (
     <Box w="100%">
-      {meta.touched && meta.error ? (
-        <Flex>
-          <Text fontSize="md" color="red">
-            {meta.error}
-          </Text>
-        </Flex>
-      ) : null}
+      <Flex py={2} alignContent={"center"} flexDirection="column">
+        <Text fontSize="md" color="red">
+          {meta.touched && meta.error ? meta.error : <br />}
+        </Text>
+      </Flex>
+
       <Flex>
         <Input {...field} {...props} />
         <IconButton
