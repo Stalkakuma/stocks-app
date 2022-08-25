@@ -2,10 +2,11 @@
   "name": "stocks-app",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://Stalkakuma.github.io/stocks-app",
   "main": "index.js",
   "engines": {
-  "node": "16.14.2"
-},
+    "node": "16.16.0"
+  },
   "scripts": {
     "start": "server/server.js",
     "dev:api": "NODE_ENV=development nodemon server/server.js",
@@ -44,8 +45,12 @@
     "@types/node": "^16.11.49",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
     "formik": "^2.2.9",
     "framer-motion": "^7.2.0",
+    "mongoose": "^6.5.2",
     "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
@@ -53,15 +58,11 @@
     "typescript": "^4.7.4",
     "victory": "^36.6.4",
     "web-vitals": "^2.1.4",
-    "yup": "^0.32.11",
-    "body-parser": "^1.20.0",
-    "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "mongoose": "^6.5.2",
-    "winston": "^3.8.1"
+    "winston": "^3.8.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-   "@types/react-datepicker": "^4.4.2",
+    "@types/react-datepicker": "^4.4.2",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.22.0",
