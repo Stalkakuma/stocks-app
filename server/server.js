@@ -10,7 +10,9 @@ const UserRoute = require("./UserRouter");
 
 const PORT = process.env.PORT || 3001;
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
 };
 const app = express();
 

@@ -10,7 +10,7 @@ export const sendToServer = (usersActionData: UserActionsDataValues | null) => {
     usersActionData?.priceHistory &&
     usersActionData.priceHistory.length > 0
   ) {
-    fetch("http://localhost:3001/user/create", {
+    fetch("user/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
